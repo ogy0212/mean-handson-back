@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 const express =require('express')
 const app = express()
 app.use(express.json())
@@ -16,6 +18,18 @@ app.get('/', (req, res) => {
 app.get('/users/:id', (req, res) => {
     const user = users.find(user => user.id === parseInt(req.params.id))
     res.send(user)
+})
+app.put('/users/:id', (req, res) => {
+    const user = users.find(user => user.id === parseInt(req.params.id))
+    if (!user) {
+        return res.status(404).send('not found')
+    }
+    user.name = req.body.name
+    res.send(user)
+})
+app.delete('/users/:id', (req, res) => {
+    _.remove(users, (user) => {return user.id === parseInt(req.params.id)})
+    res.send(users)
 })
 app.get('/users', (req, res) => {
     res.send(users)
