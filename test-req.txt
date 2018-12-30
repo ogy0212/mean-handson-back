@@ -1,7 +1,8 @@
-put http://localhost:3000/users/3 HTTP/1.1
+GET http://localhost:3000/users-alt HTTP/1.1
 content-type: application/json
 
 {
-    "name": "changed",
+    "firstName": "removable",
+    "lastName": "yuuto",
     "text": "prop2"
 }
